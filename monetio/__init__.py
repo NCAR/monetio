@@ -1,4 +1,4 @@
-from . import grids, models, obs, profile, sat, hdf
+from . import grids, obs, profile, sat, hdf,models
 
 __version__ = "0.1"
 
