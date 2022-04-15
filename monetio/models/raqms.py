@@ -39,6 +39,7 @@ def open_mfdataset(fname):
     names, netcdf = _ensure_mfdataset_filenames(fname)
     try:
         if netcdf:
+            print('passed file check and now reading')
             f = xr.open_mfdataset(names, concat_dim='time',drop_variables=['theta'],combine='nested')
             f = _fix_grid(f)
             f = _fix_time(f)
@@ -96,4 +97,5 @@ def _ensure_mfdataset_filenames(fname):
     netcdf = False
     if len(netcdfs) >= 1:
         netcdf = True
+    print(names)
     return names, netcdf
