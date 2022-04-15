@@ -1,4 +1,9 @@
-from . import grids, obs, profile, sat, hdf,models
+from . import grids
+from . import obs
+from . import profile
+from . import sat
+from . import hdf
+from . import models
 
 __version__ = "0.1"
 
