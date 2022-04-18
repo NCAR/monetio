@@ -67,7 +67,7 @@ def _fix_grid(f):
 
 def _fix_time(f):
     import pandas as pd
-    dtstr = f.Times
+    dtstr = f.Times.values
     dtstr = [i.decode() for i in dtstr]
     date = pd.to_datetime(dtstr,origin=pd.Timestamp('2018-12-31'))
     f['Time'] = (('time',),date)
