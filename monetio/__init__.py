@@ -45,7 +45,7 @@ omps_nadir = sat.omps_nadir
 hdfio = hdf.hdfio
 
 
-__all__ = ["models", "obs", "sat", "hdf", "util", "grids", "profile", "__version__"]
+__all__ = ["__version__","models", "obs", "sat", "hdf", "util", "grids", "profile"]
 
 
 def rename_latlon(ds):
