@@ -1,5 +1,5 @@
-from monetio import grids, obs,profile,sat,hdf,models
-
+#from . import grids, obs,profile,sat,hdf,models
+import .
 __version__ = "0.1"
 
 # point observations
