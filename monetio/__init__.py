@@ -1,5 +1,5 @@
 #from . import grids, obs,profile,sat,hdf,models
-import .
+import monetio
 __version__ = "0.1"
 
 # point observations
