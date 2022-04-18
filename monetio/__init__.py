@@ -1,10 +1,11 @@
 from . import grids#, obs,profile,sat,hdf,models
+__version__ = "0.1"
 #import monetio
 import .models as models
 import .obs as obs
 import .profile as profile
 import .sat as sat
-__version__ = "0.1"
+
 
 # point observations
 airnow = obs.airnow
