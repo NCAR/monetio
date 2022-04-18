@@ -69,7 +69,7 @@ def _fix_time(f):
     import pandas as pd
     dtstr = f.Times.values
     dtstr = [i.decode() for i in dtstr]
-    date = pd.to_datetime(dtstr,origin=pd.Timestamp('2018-12-31'))
+    date = pd.to_datetime(dtstr,format='%Y_%m_%d_%H:%M:%S')
     f['Time'] = (('time',),date)
     
     f = f.set_index({'time':'Time'})
