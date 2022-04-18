@@ -1,6 +1,6 @@
 from . import (grids, obs,profile,sat,hdf,models,)
 #from .models import raqms
-#__version__ = "0.1"
+__version__ = "0.1"
 #import monetio
 
 
