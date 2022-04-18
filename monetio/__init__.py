@@ -1,45 +1,49 @@
-#from . import grids, obs,profile,sat,hdf,models
-import monetio
+from . import grids#, obs,profile,sat,hdf,models
+#import monetio
+import .models as models
+import .obs as obs
+import .profile as profile
+import .sat as sat
 __version__ = "0.1"
 
 # point observations
-airnow = monetio.obs.airnow
-aeronet = monetio.obs.aeronet
-aqs = monetio.obs.aqs
-cems = monetio.obs.cems
-crn = monetio.obs.crn
-improve = monetio.obs.improve
-ish = monetio.obs.ish
-ish_lite = monetio.obs.ish_lite
-nadp = monetio.obs.nadp
-openaq = monetio.obs.openaq
-pams = monetio.obs.pams
+airnow = obs.airnow
+aeronet = obs.aeronet
+aqs = obs.aqs
+cems = obs.cems
+crn = obs.crn
+improve = obs.improve
+ish = obs.ish
+ish_lite = obs.ish_lite
+nadp = obs.nadp
+openaq = obs.openaq
+pams = obs.pams
 
 # models
-fv3chem = monetio.models.fv3chem
-cmaq = monetio.models.cmaq
-camx = monetio.models.camx
-prepchem = monetio.models.prepchem
-ncep_grib = monetio.models.ncep_grib
+fv3chem = models.fv3chem
+cmaq = models.cmaq
+camx = models.camx
+prepchem = models.prepchem
+ncep_grib = models.ncep_grib
 # emitimes = models.emitimes
 # cdump2netcdf = models.cdump2netcdf
-hysplit = monetio.models.hysplit
-hytraj = monetio.models.hytraj
-pardump = monetio.models.pardump
-raqms = monetio.models.raqms
+hysplit = models.hysplit
+hytraj = models.hytraj
+pardump = models.pardump
+raqms = models.raqms
 
 # profiles
-icartt = monetio.profile.icartt
-tolnet = monetio.profile.tolnet
+icartt = profile.icartt
+tolnet = profile.tolnet
 
 # sat
-goes = monetio.sat.goes
-modis_l2 = monetio.sat.modis_l2
-omps_limb = monetio.sat.omps_limb
-omps_nadir = monetio.sat.omps_nadir
+goes = sat.goes
+modis_l2 = sat.modis_l2
+omps_limb = sat.omps_limb
+omps_nadir = sat.omps_nadir
 
 # hdf
-hdfio = monetio.hdf.hdfio
+hdfio = hdf.hdfio
 
 
 __all__ = ["models", "obs", "sat", "hdf", "util", "grids", "profile", "__version__"]
