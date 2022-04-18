@@ -1,10 +1,8 @@
 from . import grids#, obs,profile,sat,hdf,models
+from .models import raqms
 __version__ = "0.1"
 #import monetio
-import .models as models
-import .obs as obs
-import .profile as profile
-import .sat as sat
+
 
 
 # point observations
