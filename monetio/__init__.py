@@ -3,43 +3,43 @@ import monetio
 __version__ = "0.1"
 
 # point observations
-airnow = obs.airnow
-aeronet = obs.aeronet
-aqs = obs.aqs
-cems = obs.cems
-crn = obs.crn
-improve = obs.improve
-ish = obs.ish
-ish_lite = obs.ish_lite
-nadp = obs.nadp
-openaq = obs.openaq
-pams = obs.pams
+airnow = monetio.obs.airnow
+aeronet = monetio.obs.aeronet
+aqs = monetio.obs.aqs
+cems = monetio.obs.cems
+crn = monetio.obs.crn
+improve = monetio.obs.improve
+ish = monetio.obs.ish
+ish_lite = monetio.obs.ish_lite
+nadp = monetio.obs.nadp
+openaq = monetio.obs.openaq
+pams = monetio.obs.pams
 
 # models
-fv3chem = models.fv3chem
-cmaq = models.cmaq
-camx = models.camx
-prepchem = models.prepchem
-ncep_grib = models.ncep_grib
+fv3chem = monetio.models.fv3chem
+cmaq = monetio.models.cmaq
+camx = monetio.models.camx
+prepchem = monetio.models.prepchem
+ncep_grib = monetio.models.ncep_grib
 # emitimes = models.emitimes
 # cdump2netcdf = models.cdump2netcdf
-hysplit = models.hysplit
-hytraj = models.hytraj
-pardump = models.pardump
-raqms = models.raqms
+hysplit = monetio.models.hysplit
+hytraj = monetio.models.hytraj
+pardump = monetio.models.pardump
+raqms = monetio.models.raqms
 
 # profiles
-icartt = profile.icartt
-tolnet = profile.tolnet
+icartt = monetio.profile.icartt
+tolnet = monetio.profile.tolnet
 
 # sat
-goes = sat.goes
-modis_l2 = sat.modis_l2
-omps_limb = sat.omps_limb
-omps_nadir = sat.omps_nadir
+goes = monetio.sat.goes
+modis_l2 = monetio.sat.modis_l2
+omps_limb = monetio.sat.omps_limb
+omps_nadir = monetio.sat.omps_nadir
 
 # hdf
-hdfio = hdf.hdfio
+hdfio = monetio.hdf.hdfio
 
 
 __all__ = ["models", "obs", "sat", "hdf", "util", "grids", "profile", "__version__"]
