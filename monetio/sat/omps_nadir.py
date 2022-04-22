@@ -12,7 +12,7 @@ def read_OMPS_nm(files):
     import xarray as xr
     
     count = 0
-    print(files)
+    #print(files)
     # Check if files are url
     if 'https' in files[0]:
         
@@ -29,7 +29,7 @@ def read_OMPS_nm(files):
         filelist = sorted(glob(files, recursive=False))
         #print(filelist)
         for filename in filelist:
-            print(filename)
+            #print(filename)
             try:
                 data = extract_OMPS_nm(filename)
 
