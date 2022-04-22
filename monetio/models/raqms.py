@@ -18,9 +18,9 @@ def open_dataset(fname):
             f = xr.open_dataset(names[0],drop_variables=['theta'])
             f = _fix_grid(f)
             f = _fix_time(f)
-        elif 'trimmed' in fname:
-            print('opening')
-            f = xr.open_dataset(fname)
+        elif 'trimmed' in fname[0]:
+            #print('opening')
+            f = xr.open_dataset(fname[0])
         else:
             raise ValueError
     except ValueError:
