@@ -19,6 +19,7 @@ def open_dataset(fname):
             f = _fix_grid(f)
             f = _fix_time(f)
         elif 'trimmed' in fname:
+            print('opening')
             f = xr.open_dataset(fname)
         else:
             raise ValueError
