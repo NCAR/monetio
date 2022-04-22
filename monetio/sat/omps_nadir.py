@@ -40,7 +40,8 @@ def read_OMPS_nm(files):
                     data_array = xr.concat([data_array, data], 'x')
             except KeyError:
                 pass
-            
+            except ValueError:
+                pass
     return data_array
 
 def extract_OMPS_nm_opendap(fname):
