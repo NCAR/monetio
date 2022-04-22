@@ -30,13 +30,16 @@ def read_OMPS_nm(files):
         #print(filelist)
         for filename in filelist:
             print(filename)
-            data = extract_OMPS_nm(filename)
-            
-            if count == 0:
-                data_array = data
-                count += 1
-            else:
-                data_array = xr.concat([data_array, data], 'x')
+            try:
+                data = extract_OMPS_nm(filename)
+
+                if count == 0:
+                    data_array = data
+                    count += 1
+                else:
+                    data_array = xr.concat([data_array, data], 'x')
+            except KeyError:
+                pass
             
     return data_array
 
