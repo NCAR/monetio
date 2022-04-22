@@ -18,6 +18,8 @@ def open_dataset(fname):
             f = xr.open_dataset(names[0],drop_variables=['theta'])
             f = _fix_grid(f)
             f = _fix_time(f)
+        elif 'trimmed' in fname:
+            f = xr.open_dataset(fname)
         else:
             raise ValueError
     except ValueError:
@@ -39,10 +41,12 @@ def open_mfdataset(fname):
     names, netcdf = _ensure_mfdataset_filenames(fname)
     try:
         if netcdf:
-            print('passed file check and now reading')
+            #print('passed file check and now reading')
             f = xr.open_mfdataset(names, concat_dim='time',drop_variables=['theta'],combine='nested')
             f = _fix_grid(f)
             f = _fix_time(f)
+        elif 'trimmed' in fname:
+            f = xr.open_dataset(fname)
         else:
             raise ValueError
     except ValueError:
