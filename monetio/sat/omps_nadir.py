@@ -27,7 +27,7 @@ def read_OMPS_nm(files):
                 data_array = xr.concat([data_array, data], 'x')
     else:
         filelist = sorted(glob(files, recursive=False))
-
+        print(filelist)
         for filename in filelist:
             data = extract_OMPS_nm(filename)
             
