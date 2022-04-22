@@ -46,7 +46,7 @@ def open_mfdataset(fname):
             f = xr.open_mfdataset(names, concat_dim='time',drop_variables=['theta'],combine='nested')
             f = _fix_grid(f)
             f = _fix_time(f)
-        elif 'trimmed' in fname:
+        elif 'trimmed' in fname[0]:
             f = xr.open_dataset(fname)
         else:
             raise ValueError
