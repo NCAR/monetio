@@ -1,7 +1,11 @@
 """
 Reader for RAQMS real-time files.
 
+<<<<<<< HEAD
 RAQMS: Realtime Air Quality Modeling System
+=======
+RAQMS: Realtime Air Quality Monitoring System
+>>>>>>> a634a016b826b15e92a641e736a6edbf2c6e74c3
 
 More information: http://raqms-ops.ssec.wisc.edu/
 """
@@ -58,7 +62,6 @@ def open_mfdataset(fname):
     ds = _fix_grid(ds)
     ds = _fix_time(ds)
     ds = _fix_pres(ds)
-
     return ds
 
 
@@ -124,7 +127,6 @@ def _fix_time(ds):
 
     return ds
 
-
 def _fix_pres(ds):
     """Rename pressure variables and convert from mb to Pa."""
     rename0 = {
@@ -142,7 +144,6 @@ def _fix_pres(ds):
         ds[vn].attrs.update(units="Pa")
 
     return ds
-
 
 def _ensure_mfdataset_filenames(fname):
     """Checks if RAQMS netcdf dataset
