@@ -1,6 +1,7 @@
 from . import (
     _modis_l2_mm,
     _omps_nadir_mm,
+    _mopitt_l3_mm,
     goes,
     modis_ornl,
     nesdis_edr_viirs,
