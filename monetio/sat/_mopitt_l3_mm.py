@@ -87,6 +87,8 @@ def loadAndExtractGriddedHDF(filename,varname):
         print("ERROR: Cannot load " + varname + " from " + filename)
         return 0
     
+    he5_load.close()
+    
     #DEBEG
     #print(data_loaded.shape)
 
