@@ -133,23 +133,6 @@ def _fix_time(ds):
 
     return ds
 
-def _fix_pres(ds):
-    """Rename pressure variables and convert from mb to Pa."""
-    rename0 = {
-        "psfc": "surfpres_pa",
-        "delp": "dp_pa",
-        "pdash": "pres_pa_mid",
-    }
-    rename = {k: v for k, v in rename0.items() if k in ds.variables}
-
-    ds = ds.rename_vars(rename)
-    for vn in rename.values():
-        assert ds[vn].attrs.get("units", "mb") in {"mb", "hPa"}
-        with xr.set_options(keep_attrs=True):
-            ds[vn] *= 100
-        ds[vn].attrs.update(units="Pa")
-
-    return ds
 
 def _fix_pres(ds):
     """Rename pressure variables and convert from mb to Pa."""
