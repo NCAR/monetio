@@ -1,18 +1,14 @@
 """
 Reader for RAQMS real-time files.
 
-<<<<<<< HEAD
-RAQMS: Realtime Air Quality Modeling System
-=======
 RAQMS: Realtime Air Quality Monitoring System
->>>>>>> a634a016b826b15e92a641e736a6edbf2c6e74c3
 
 More information: http://raqms-ops.ssec.wisc.edu/
 """
 import xarray as xr
 
 
-def open_dataset(fname):
+def open_dataset(fname, *, surf_only=False):
     """Open a single dataset from RAQMS output. Currently expects netCDF file format.
 
     Parameters
@@ -31,14 +27,12 @@ def open_dataset(fname):
         )
 
     ds = xr.open_dataset(names[0], drop_variables=["theta"])
-    ds = _fix_grid(ds)
-    ds = _fix_time(ds)
-    ds = _fix_pres(ds)
+    ds = _fix(ds, surf_only=surf_only)
 
     return ds
 
 
-def open_mfdataset(fname):
+def open_mfdataset(fname, *, surf_only=False):
     """Open a multiple file dataset from RAQMS output.
 
     Parameters
@@ -59,9 +53,21 @@ def open_mfdataset(fname):
         )
 
     ds = xr.open_mfdataset(names, concat_dim="time", drop_variables=["theta"], combine="nested")
+    ds = _fix(ds, surf_only=surf_only)
+
+    return ds
+
+
+def _fix(ds, *, surf_only):
     ds = _fix_grid(ds)
     ds = _fix_time(ds)
     ds = _fix_pres(ds)
+
+    if surf_only:
+        ds = ds.isel(z=0).expand_dims("z")
+
+    ds = ds.transpose("time", "z", "y", "x")
+
     return ds
 
 
@@ -144,6 +150,25 @@ def _fix_pres(ds):
         ds[vn].attrs.update(units="Pa")
 
     return ds
+
+def _fix_pres(ds):
+    """Rename pressure variables and convert from mb to Pa."""
+    rename0 = {
+        "psfc": "surfpres_pa",
+        "delp": "dp_pa",
+        "pdash": "pres_pa_mid",
+    }
+    rename = {k: v for k, v in rename0.items() if k in ds.variables}
+
+    ds = ds.rename_vars(rename)
+    for vn in rename.values():
+        assert ds[vn].attrs.get("units", "mb") in {"mb", "hPa"}
+        with xr.set_options(keep_attrs=True):
+            ds[vn] *= 100
+        ds[vn].attrs.update(units="Pa")
+
+    return ds
+
 
 def _ensure_mfdataset_filenames(fname):
     """Checks if RAQMS netcdf dataset
