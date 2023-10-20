@@ -88,6 +88,13 @@ def open_mfdataset(
         var_list.append("PSFC")
         # need to calculate surface pressure and dp and optionally dz here.
 
+        # Add additional defaults needed for satellite analysis. M.Li
+        var_list.append("PH")
+        var_list.append("PHB")
+        var_list.append("PB")
+        var_list.append("P")
+        var_list.append("T")
+
     var_wrf_list = []
     for var in var_list:
         if var == "pres":  # Insert special versions.
