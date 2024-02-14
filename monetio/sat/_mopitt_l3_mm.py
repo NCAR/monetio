@@ -109,7 +109,7 @@ def loadAndExtractGriddedHDF(filename,varname):
     return ds
 
 
-def read_mopittdataset(files, varnames):
+def read_mopittdataset(files, varname):
     """Loop through files to open the MOPITT level 3 data.
 
     Parameters
@@ -128,15 +128,15 @@ def read_mopittdataset(files, varnames):
     for filename in filelist:
         count2 = 0
         print(filename)
-        for varname in varnames:
-            variabledata = loadAndExtractGriddedHDF(filename, varname)
-            time = getStartTime(filename)
-            variabledata = variabledata.expand_dims(axis=0, time=[time])
-            if count2 == 0:
-                data = variabledata
-                count2 += 1
-            else:
-                data = xr.merge([data,variabledata])
+        
+        variabledata = loadAndExtractGriddedHDF(filename, varname)
+        time = getStartTime(filename)
+        data = variabledata.expand_dims(axis=0, time=[time])
+        #    if count2 == 0:
+        #        data = variabledata
+        #        count2 += 1
+        #    else:
+        #        data = xr.merge([data,variabledata])
         if count == 0:
             full_dataset = data
             count += 1
