@@ -82,7 +82,7 @@ def loadAndExtractGriddedHDF(filename,varname):
                      'apriori_surf': "/HDFEOS/GRIDS/MOP03/Data Fields/APrioriCOSurfaceMixingRatioDay",\
                      'pressure_surf': "/HDFEOS/GRIDS/MOP03/Data Fields/SurfacePressureDay",\
                      'ak_col': "/HDFEOS/GRIDS/MOP03/Data Fields/TotalColumnAveragingKernelDay",\
-                     'ak_prof': "/HDFEOS/GRIDS/MOP03/Data Fields/APrioriCOMixingRatioProfileDay" }
+                     'apriori_prof': "/HDFEOS/GRIDS/MOP03/Data Fields/APrioriCOMixingRatioProfileDay" }
     try:
         data_loaded = he5_load[variable_dict[varname]][:]
     except:
@@ -109,7 +109,7 @@ def loadAndExtractGriddedHDF(filename,varname):
     return ds
 
 
-def read_mopittdataset(files, varname):
+def read_mopittdataset(files, varnames):
     """Loop through files to open the MOPITT level 3 data.
 
     Parameters
@@ -128,15 +128,15 @@ def read_mopittdataset(files, varname):
     for filename in filelist:
         count2 = 0
         print(filename)
-        
-        variabledata = loadAndExtractGriddedHDF(filename, varname)
-        time = getStartTime(filename)
-        data = variabledata.expand_dims(axis=0, time=[time])
-        #    if count2 == 0:
-        #        data = variabledata
-        #        count2 += 1
-        #    else:
-        #        data = xr.merge([data,variabledata])
+        for varname in varnames:
+            variabledata = loadAndExtractGriddedHDF(filename, varname)
+            time = getStartTime(filename)
+            variabledata = variabledata.expand_dims(axis=0, time=[time])
+            if count2 == 0:
+                data = variabledata
+                count2 += 1
+            else:
+                data = xr.merge([data,variabledata])
         if count == 0:
             full_dataset = data
             count += 1
