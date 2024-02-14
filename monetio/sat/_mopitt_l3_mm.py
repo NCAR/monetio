@@ -134,7 +134,7 @@ def read_mopittdataset(files, varnames):
             variabledata = variabledata.expand_dims(axis=0, time=[time])
             if count2 == 0:
                 data = variabledata
-                count += 1
+                count2 += 1
             else:
                 data = xr.merge([data,variabledata])
         if count == 0:
