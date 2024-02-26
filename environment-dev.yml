@@ -9,17 +9,21 @@ dependencies:
   - dask
   - netcdf4
   - numpy
-  - pandas
+  - pandas<2
   - s3fs
   - scipy
   - xarray
   #
   # optional
+  - h5py
   - joblib
-  - pyhdf
+  - lxml
+  - pyhdf <0.11
   - requests
+  - timezonefinder
   #
   # test
+  - filelock
   - pytest
   - pytest-xdist
   #
