@@ -18,7 +18,7 @@ __all__ = [
     "_mopitt_l3_mm",
     "_omps_l3_mm",
     "_omps_nadir_mm"
-    "_tropomi_l3_no2_mm",
+    "_tropomi_l2_no2_mm",
     "goes",
     "modis_ornl",
     "nesdis_edr_viirs",
