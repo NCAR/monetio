@@ -13,7 +13,6 @@ from . import (
     pardump,
     prepchem,
     raqms,
-    fv3raqms,
 )
 
 __all__ = [
@@ -31,7 +30,6 @@ __all__ = [
     "prepchem",
     "pardump",
     "raqms",
-    "fv3raqms",
 ]
 
 __name__ = "models"
