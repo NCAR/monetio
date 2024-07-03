@@ -1,10 +1,16 @@
-""" CESM File Reader """
+"""CESM File Reader"""
+
 import xarray as xr
 from numpy import meshgrid
 
 
 def open_mfdataset(
-    fname, earth_radius=6370000, convert_to_ppb=True, var_list=["O3", "PM25"], **kwargs
+    fname,
+    earth_radius=6370000,
+    convert_to_ppb=True,
+    var_list=["O3", "PM25"],
+    surf_only=False,
+    **kwargs,
 ):
     """Method to open multiple (or single) CESM netcdf files.
        This method extends the xarray.open_mfdataset functionality
@@ -52,6 +58,31 @@ def open_mfdataset(
     #############################
     # Process the loaded data
     # extract variables of choice
+    # If vertical information is required, add it.
+    # Assume that height and geopotential height are equal
+    if surf_only:
+        dset_load.rename(
+            {
+                "T": "temperature_k",
+                "Z3": "alt_msl_m_mid",
+                "P0": "surfpres_pa",
+                "PMID": "pres_pa_mid",
+            }
+        )
+        # Calc height agl. PHIS is in m2/s2, whereas Z3 is in already in m
+        dset_load["alt_agl_m_mid"] = dset_load["alt_msl_m_mid"] - dset_load["PHIS"] / 9.81
+        dset_load["alt_agl_m_mid"].attrs = {
+            "description": "geopot height above ground level",
+            "units": "m",
+        }
+        var_list = var_list + [
+            "temperature_k",
+            "alt_msl_m_mid",
+            "alt_agl_m_mid",
+            "surfpres_pa",
+            "pres_pa_mid",
+        ]
+
     dset = dset_load.get(var_list)
     # rename altitude dimension to z for monet use
     # also rename lon to x and lat to y
@@ -70,6 +101,9 @@ def open_mfdataset(
 
     # re-order so surface is associated with the first vertical index
     dset = dset.sortby("z", ascending=False)
+
+    # Get rid of variables lat and lon to avoid future conflicts
+    dset = dset.drop_vars(["lat", "lon"])
 
     #############################
 
