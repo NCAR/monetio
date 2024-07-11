@@ -60,7 +60,7 @@ def open_mfdataset(
     # extract variables of choice
     # If vertical information is required, add it.
     # Assume that height and geopotential height are equal
-    if surf_only:
+    if not surf_only:
         dset_load.rename(
             {
                 "T": "temperature_k",
