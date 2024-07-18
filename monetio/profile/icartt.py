@@ -341,7 +341,7 @@ class Dataset:
         # value is set to 0. The Mid-point time is required when it is not at the
         # average of Start and Stop times. For additional information see Section
         # 2.5 below.).
-        self.dataInterval = int(self.__readline()[0])
+        self.dataInterval = float(self.__readline()[0])
 
         # line 9 - Description or name of independent variable (This is the name
         # chosen for the start time. It always refers to the number of seconds UTC
@@ -436,7 +436,7 @@ class Dataset:
             v = x.replace(self.VAR[i].miss, "NaN")
             if "NaN" in v:
                 v = "NaN"
-            vals.append(float(v.strip()))
+            vals.append(float(v.strip()) * self.VAR[i].scale)  # multiply with scaling factor
         return vals
 
     def read_data(self):
