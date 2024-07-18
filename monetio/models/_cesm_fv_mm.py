@@ -9,7 +9,7 @@ def open_mfdataset(
     earth_radius=6370000,
     convert_to_ppb=True,
     var_list=["O3", "PM25"],
-    surf_only=False,
+    surf_only=True,
     **kwargs,
 ):
     """Method to open multiple (or single) CESM netcdf files.
