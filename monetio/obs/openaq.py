@@ -26,7 +26,7 @@
 import json
 
 import pandas as pd
-from numpy import NaN
+from numpy import nan
 
 
 def add_data(dates, n_procs=1):
@@ -93,7 +93,7 @@ class OPENAQ:
         dfs = [dask.delayed(self.read_json)(f) for f in urls]
         dff = dd.from_delayed(dfs)
         z = dff.compute(num_workers=num_workers)
-        z.coordinates.replace(to_replace=[None], value=NaN, inplace=True)
+        z.coordinates.replace(to_replace=[None], value=nan, inplace=True)
         z = z.dropna().reset_index(drop=True)
         js = json.loads(z[["coordinates", "date"]].to_json(orient="records"))
         dff = pd.io.json.json_normalize(js)
@@ -164,7 +164,7 @@ class OPENAQ:
         return df.drop(columns="date")
 
     def _fix_units(self, df):
-        df.loc[df.value <= 0] = NaN
+        df.loc[df.value <= 0] = nan
         # For a certain parameter, different site-times may have different units.
         # https://docs.openaq.org/docs/parameters
         # These conversion factors are based on

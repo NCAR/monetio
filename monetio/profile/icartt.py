@@ -3,12 +3,12 @@ import sys
 
 import pandas as pd
 import xarray as xr
-from numpy import NaN
+from numpy import nan
 
 
 def var_to_da(o, var_name, time):
     unit = o.units(var_name)
-    bad_val = NaN
+    bad_val = nan
     vals = o[var_name]
     name = var_name
     if "Latitude" in var_name:
