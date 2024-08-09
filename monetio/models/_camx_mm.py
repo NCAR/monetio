@@ -1,12 +1,11 @@
 """CAMx File Reader"""
 
-import xarray as xr
+import warnings
 
 # from numpy import array, concatenate
 import numpy as np
+import xarray as xr
 from pandas import Series, to_datetime
-import warnings
-import pdb
 
 from ..grids import get_ioapi_pyresample_area_def, grid_from_dataset
 
